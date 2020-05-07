@@ -1,0 +1,32 @@
+<section class="wrapper fadeInDown body">
+  <div id="formContent">
+    <div class="fadeIn first">
+      <img [src]="logo()" id="icon" alt="User Icon"/>
+    </div>
+    <form #formularioLogin="ngForm" (ngSubmit)="onSubmit(formularioLogin)">
+      <div class="form-group">
+        <label for="login"></label>
+        <input type="text" id="login" (keyup)="formatearRut()" class="fadeIn second rut_k" name="login"
+               placeholder="Rut" #rutModel="ngModel"
+               [(ngModel)]="usuario.rutUsuario">
+      </div>
+      <div class="form-group">
+        <label for="password"></label>
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña"
+               #passModel="ngModel" [(ngModel)]="usuario.password" required>
+      </div>
+      <ng-container
+        *ngIf="usuario.password !== '' && usuario.rutUsuario !== ''; then valid; else invalid"></ng-container>
+      <ng-template #valid>
+        <input type="submit" class="fadeIn fourth btn-login" value="Ingresar">
+      </ng-template>
+      <ng-template #invalid>
+        <input type="button" class="fadeIn fourth btn-login disabled" value="Ingresar" disabled>
+      </ng-template>
+
+    </form>
+    <div id="formFooter">
+      <a class="underlineHover" href="#">¿Se te olvidó tu contraseña?</a>
+    </div>
+  </div>
+</section>
